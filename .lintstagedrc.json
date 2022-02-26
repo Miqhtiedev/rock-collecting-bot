@@ -1,4 +1,5 @@
 {
   "*.ts": "eslint --fix --ext ts",
-  "*.{json,md}": "prettier --write"
+  "*.{json,md}": "prettier --write",
+  "*.prisma": "pnpm prisma format"
 }
