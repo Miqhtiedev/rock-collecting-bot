@@ -1,0 +1,23 @@
+{
+  "Generate Command": {
+    "scope": "typescript",
+    "prefix": "cmd",
+    "body": [
+      "import { Command } from \"discord.js\";",
+      "",
+      "const command: Command = {",
+      "\trun: async (client, message) => {",
+      "\t\tif (!message.guild) return;$0",
+      "\t},",
+      "\trequiredPermission: \"$1\",",
+      "\tminimumArguments: $2,",
+      "\tusage: \"$3\",",
+      "\taliases: [\"$4\"],",
+      "};",
+      "",
+      "export default command;",
+      ""
+    ],
+    "description": "Generate boilerplate code for a new command file"
+  }
+}
