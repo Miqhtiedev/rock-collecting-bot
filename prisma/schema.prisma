@@ -8,6 +8,10 @@ datasource db {
 }
 
 model Server {
-  guildId String @id
-  prefix  String @default("!")
+  guildId      String  @id
+  prefix       String  @default("!")
+  joinMessage  String?
+  joinChannel  String?
+  leaveMessage String?
+  leaveChannel String?
 }

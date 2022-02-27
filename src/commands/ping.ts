@@ -1,10 +1,9 @@
-import { Command } from "discord.js";
+import { CommandData } from "discord.js";
 
-const command: Command = {
+const command: CommandData = {
   run: (client, message) => {
     message.channel.send("Pong!");
   },
-  requiredPermission: "ADMINISTRATOR",
   usage: "ping",
 };
 

@@ -10,7 +10,7 @@ config();
 invariant(process.env.BOT_TOKEN, "BOT_TOKEN is a reuired environment variable");
 invariant(process.env.DATABASE_URL, "DATABASE_URL is a required environment variable");
 
-const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS"] });
+const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS"], partials: ["GUILD_MEMBER"] });
 transformClient(client);
 
 registerCommands(client, path.join(__dirname, "commands"));

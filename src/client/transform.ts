@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import { Client, Collection, Command } from "discord.js";
+import { Client, Collection } from "discord.js";
+import { Command } from "./command";
 
 export interface ClientExtensions {
   database: PrismaClient;

@@ -2,21 +2,22 @@ import { CommandData } from "discord.js";
 
 const command: CommandData = {
   run: async (client, message, args) => {
-    if (!message.guild || !args[0]) return;
+    if (!message.guild) return;
+    const leaveMessage = args.join(" ");
     await client.database.server.update({
       where: {
         guildId: message.guild.id,
       },
       data: {
-        prefix: args[0].toLowerCase(),
+        leaveMessage: leaveMessage,
       },
     });
-    message.reply(`Updated prefix to \`${args[0]}\``);
+    message.reply("Leave message updated!");
   },
   requiredPermission: "ADMINISTRATOR",
   minimumArguments: 1,
-  usage: "setprefix <prefix>",
-  aliases: ["prefix"],
+  usage: "setleave message <message>",
+  aliases: ["m"],
 };
 
 export default command;

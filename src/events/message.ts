@@ -1,6 +1,7 @@
 import { Message } from "discord.js";
 import { handleCommand } from "../client/command";
 import { Event, EventExecuteCallback } from "../client/events";
+import { getCommand } from "../utils/getCommand";
 
 const execute: EventExecuteCallback = async (client, message: Message) => {
   if (!message.guild || message.author.bot) return;
@@ -25,7 +26,7 @@ const execute: EventExecuteCallback = async (client, message: Message) => {
   const commandName = args.shift()?.toLowerCase();
   if (!commandName) return;
 
-  const command = client.commands.get(commandName) ?? client.commands.find((command) => command.aliases !== undefined && command.aliases.includes(commandName));
+  const command = getCommand(client.commands, commandName);
   if (!command) return;
 
   handleCommand(client, command, message, args);

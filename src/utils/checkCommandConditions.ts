@@ -1,4 +1,5 @@
-import { Message, Command } from "discord.js";
+import { Message } from "discord.js";
+import { Command } from "../client/command";
 
 export const checkCommandConditions = (command: Command, message: Message, args: string[]): boolean => {
   const requiredPermission = command.requiredPermission;
