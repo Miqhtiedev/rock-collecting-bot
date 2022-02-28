@@ -12,6 +12,7 @@ model Server {
   prefix       String  @default("!")
   joinMessage  String?
   joinChannel  String?
+  joinRoleId   String?
   leaveMessage String?
   leaveChannel String?
 }

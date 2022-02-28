@@ -13,9 +13,17 @@ const execute: EventExecuteCallback = async (client, member: GuildMember) => {
     select: {
       joinChannel: true,
       joinMessage: true,
+      joinRoleId: true,
     },
     update: {},
   });
+
+  if (guildData.joinRoleId) {
+    const role = member.guild.roles.cache.get(guildData.joinRoleId);
+    if (role) {
+      member.roles.add(role);
+    }
+  }
 
   if (!guildData.joinChannel || !guildData.joinMessage) return;
 
