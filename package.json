@@ -6,8 +6,8 @@
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
     "clean": "rimraf ./build",
-    "build": "tsc",
-    "dev": "tsc-watch --onSuccess \"node ./build/index.js\"",
+    "build": "pnpm clean && tsc",
+    "dev": "pnpm clean && tsc-watch --onSuccess \"node ./build/index.js\"",
     "prisma:update": "prisma format && prisma db push",
     "lint": "eslint --fix . && prettier ./**/**.{json,md} --write && pnpm prisma format"
   },

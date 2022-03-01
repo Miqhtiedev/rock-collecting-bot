@@ -8,11 +8,32 @@ datasource db {
 }
 
 model Server {
-  guildId      String  @id
-  prefix       String  @default("!")
-  joinMessage  String?
-  joinChannel  String?
-  joinRoleId   String?
-  leaveMessage String?
-  leaveChannel String?
+  guildId       String         @id
+  prefix        String         @default("!")
+  joinMessage   String?
+  joinChannel   String?
+  joinRoleId    String?
+  leaveMessage  String?
+  leaveChannel  String?
+  users         User[]
+  levelingRoles LevelingRole[]
+}
+
+model LevelingRole {
+  guildId String
+  roleId  String
+  level   Int
+  server  Server @relation(fields: [guildId], references: [guildId])
+
+  @@id([guildId, roleId])
+}
+
+model User {
+  discordId                  String
+  guildId                    String
+  levelingExperience         Int    @default(0)
+  levelingExperienceCooldown BigInt @default(0) // Once a user gains experience they must wait till after this timestamp until they can gain more
+  server                     Server @relation(fields: [guildId], references: [guildId])
+
+  @@id([discordId, guildId])
 }
