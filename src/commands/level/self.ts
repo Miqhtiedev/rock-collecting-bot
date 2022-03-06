@@ -5,19 +5,17 @@ const command: CommandData = {
   run: async (client, message) => {
     if (!message.guild) return;
 
-    const userData = await client.database.user.upsert({
+    const userData = await client.database.user.findFirst({
       where: {
-        discordId_guildId: { discordId: message.author.id, guildId: message.guild.id },
-      },
-      create: {
         discordId: message.author.id,
         guildId: message.guild.id,
       },
-      update: {},
       select: {
         levelingExperience: true,
       },
     });
+
+    if (!userData) return;
 
     const currentLevel = Math.floor(calculateLevel(userData.levelingExperience));
     const experienceTillNextLevel = calculateExperience(currentLevel + 1) - userData.levelingExperience;
