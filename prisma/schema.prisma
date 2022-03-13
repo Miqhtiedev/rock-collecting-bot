@@ -31,9 +31,10 @@ model LevelingRole {
 model User {
   discordId                  String
   guildId                    String
-  levelingExperience         Int    @default(0)
-  levelingExperienceCooldown BigInt @default(0) // Once a user gains experience they must wait till after this timestamp until they can gain more
-  server                     Server @relation(fields: [guildId], references: [guildId])
+  levelingExperience         Int     @default(0)
+  levelingExperienceCooldown BigInt  @default(0) // Once a user gains experience they must wait till after this timestamp until they can gain more
+  sendLevelupMessage         Boolean @default(true)
+  server                     Server  @relation(fields: [guildId], references: [guildId])
 
   @@id([discordId, guildId])
 }

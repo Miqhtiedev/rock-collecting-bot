@@ -15,6 +15,7 @@ const execute: EventExecuteCallback = async (client, message: Message) => {
     },
     update: {},
     select: {
+      sendLevelupMessage: true,
       server: {
         select: {
           levelingRoles: true,
@@ -33,7 +34,10 @@ const execute: EventExecuteCallback = async (client, message: Message) => {
   const newLevel = Math.floor(calculateLevel(userData.levelingExperience + gainedXp));
 
   if (newLevel > currentLevel) {
-    message.reply(`You have leveled up to level ${newLevel}!`);
+    if (userData.sendLevelupMessage) {
+      message.reply(`You have leveled up to level ${newLevel}!`);
+    }
+
     const roleData = userData.server.levelingRoles.find((role) => role.level === newLevel);
     if (roleData) {
       const role = message.guild.roles.cache.get(roleData.roleId);
