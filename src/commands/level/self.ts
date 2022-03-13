@@ -12,6 +12,11 @@ const command: CommandData = {
       },
       select: {
         levelingExperience: true,
+        server: {
+          select: {
+            prefix: true,
+          },
+        },
       },
     });
 
@@ -23,7 +28,9 @@ const command: CommandData = {
     const embed = new MessageEmbed()
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
       .setTitle(`You are currently level ${currentLevel}`)
-      .setDescription(`You need **${experienceTillNextLevel}** experience to level up\nYou currently have **${userData.levelingExperience}** experience\n\nRun **c!level togglemessage** to toggle the level up message`);
+      .setDescription(
+        `You need **${experienceTillNextLevel}** experience to level up\nYou currently have **${userData.levelingExperience}** experience\n\nRun **${userData.server.prefix}level togglemessage** to toggle the level up message`
+      );
     message.reply({ embeds: [embed] });
   },
   usage: "level",
